@@ -5,7 +5,7 @@
 #ifndef CAROLO_APP_AS5X47_H
 #define CAROLO_APP_AS5X47_H
 
-#include "as5047p_c_interface.h"
+#include "lib/as5047p_c_interface.h"
 
 #include <zephyr/drivers/spi.h>
 

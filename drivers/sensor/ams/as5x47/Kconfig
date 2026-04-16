@@ -1,0 +1,9 @@
+# AMS AS5x47 rotary position sensor
+
+menuconfig AS5X47
+    bool "AMS AS5x47 rotary position sensor"
+    default y
+    depends on DT_HAS_AMS_AS5X47_ENABLED
+    select SPI
+    help
+        Enable AMS AS5x47 rotary position sensor driver
