@@ -1,0 +1,38 @@
+&lpspi4 {
+    // driver: zephyr 4.3.0-rc1
+    // compatible = "nxp,lpspi";
+    // driver: zephyr 4.0.0
+    compatible = "nxp,imx-lpspi";
+
+    status = "okay";
+
+    transfer-delay = <50>; // ns
+
+    pinctrl-0 = <&pinmux_lpspi4>;
+    pinctrl-names = "default";
+    
+    cs-gpios = <&gpio1 24 GPIO_ACTIVE_LOW>; // Steering 1 (front-left)
+
+    my_sensor: as5x47@0 {
+        compatible = "ams,as5x47";
+        output-interface = "uvw";
+        uvw-polepairs = <7>;
+        spi-max-frequency = <1000000>;
+        status = "okay";
+        reg = <0>;
+    };
+};
+
+&zephyr_udc0 {
+    cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};
+
+/ {
+    chosen {
+	    zephyr,console = &cdc_acm_uart0;
+        // use hardware uart for early debug (if necessary):
+        // zephyr,console = &lpuart6;
+    };
+};
